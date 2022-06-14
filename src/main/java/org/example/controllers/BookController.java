@@ -20,7 +20,6 @@ public class BookController {
         this.bookDAO = bookDAO;
     }
 
-
     @GetMapping()
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookDAO.getAllBooks());
