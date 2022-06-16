@@ -6,9 +6,20 @@
 </head>
 <body>
 
-<p th:text="${{book.getTitle() + ', ' + book.getAuthor + ', ' + book.getYear}">VALUE</p>
+<p th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">VALUE</p>
 
+<p th:if="${book.getPersonId()}">Книга сейчас у:</p>
+<form th:method="PUT" th:action="@{/library/books/{id}(id=${book.getId()})}">
+    <input type="submit" value="Освободить книгу"/>
+</form>
 
+<p th:unless="${book.getPersonId()}">Эта книга сейчас свободна</p>
+<!--<p th:each="book :${books}">-->
+<!--    <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"-->
+<!--       th:unless="${books.isEmpty()}">Есть книги</a>-->
+<!--</p>-->
+
+<hr></hr>
 
 <a th:href="@{/library/books/{id}/edit(id=${book.getId()})}">Редактировать</a>
 

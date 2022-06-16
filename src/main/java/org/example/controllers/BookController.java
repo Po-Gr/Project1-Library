@@ -73,4 +73,10 @@ public class BookController {
         bookDAO.delete(id);
         return "redirect:library/books";
     }
+
+    @PutMapping("/{id}")
+    public String setFree(@PathVariable("id")int id) {
+        bookDAO.setFree(id);
+        return "redirect:library/books";
+    }
 }

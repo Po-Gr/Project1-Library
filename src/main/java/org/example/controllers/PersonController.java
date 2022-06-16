@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/library/people")
@@ -30,6 +32,8 @@ public class PersonController {
     @GetMapping("/{id}")
     public String getPerson(@PathVariable("id")int id, Model model) {
         model.addAttribute("person", personDAO.getPerson(id));
+        model.addAttribute("books", personDAO.getBooks(id));
+
         return "people/person";
     }
 
@@ -66,7 +70,7 @@ public class PersonController {
             return "people/edit";
 
         personDAO.update(person, id);
-        return "redirect:library/people";
+        return "redirect:/library/people";
     }
 
     @DeleteMapping("/{id}")

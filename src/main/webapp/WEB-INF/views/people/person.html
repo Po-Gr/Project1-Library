@@ -9,7 +9,15 @@
 <p th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
 
 
+<p th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</p>
+<hr th:unless="${books.isEmpty()}"></hr>
+<a style="font-style: oblique" th:unless="${books.isEmpty()}">Книги:</a>
+<p th:each="book :${books}">
+    <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"
+       th:unless="${books.isEmpty()}">Есть книги</a>
+</p>
 
+<hr></hr>
 
 <a th:href="@{/library/people/{id}/edit(id=${person.getId()})}">Редактировать</a>
 
