@@ -10,14 +10,20 @@
 
 <p th:if="${book.getPersonId()}">Книга сейчас у:</p>
 <form th:method="PUT" th:action="@{/library/books/{id}(id=${book.getId()})}">
-    <input type="submit" value="Освободить книгу"/>
+    <input type="submit" value="Освободить книгу"
+           th:if="${book.getPersonId()}"/>
 </form>
 
-<p th:unless="${book.getPersonId()}">Эта книга сейчас свободна</p>
-<!--<p th:each="book :${books}">-->
-<!--    <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"-->
-<!--       th:unless="${books.isEmpty()}">Есть книги</a>-->
-<!--</p>-->
+<p th:unless="${book.getPersonId()}">Эта книга сейчас свободна. Кому ее назначить?</p>
+<form th:unless="${book.getPersonId()}"
+      th:method="PATCH" th:action="@{/library/books/{id}/add(id=${book.getId()})}">
+    <label for="person">Выберете человека: </label>
+    <select th:object="${person}" th:field="*{id}" id="person">
+        <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+    </select>
+
+    <input type="submit" value="Назначить книгу"/>
+</form>
 
 <hr></hr>
 

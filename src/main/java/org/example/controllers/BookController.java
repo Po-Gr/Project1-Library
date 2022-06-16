@@ -1,7 +1,9 @@
 package org.example.controllers;
 
 import org.example.dao.BookDAO;
+import org.example.dao.PersonDAO;
 import org.example.models.Book;
+import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +16,12 @@ import javax.validation.Valid;
 @RequestMapping("/library/books")
 public class BookController {
     private final BookDAO bookDAO;
+    private final PersonDAO personDAO;
 
     @Autowired
-    public BookController(BookDAO bookDAO) {
+    public BookController(BookDAO bookDAO, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
     }
 
     @GetMapping()
@@ -27,8 +31,9 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    public String getBook(@PathVariable("id")int id, Model model) {
+    public String getBook(@PathVariable("id")int id, Model model, @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.getBook(id));
+        model.addAttribute("people", personDAO.getAllPeople());
         return "books/book";
     }
 
@@ -46,7 +51,7 @@ public class BookController {
             return "books/new";
 
         bookDAO.save(book);
-        return "redirect:library/books";
+        return "redirect:";
     }
 
     @GetMapping("/{id}/edit")
@@ -65,18 +70,24 @@ public class BookController {
             return "books/edit";
 
         bookDAO.update(book, id);
-        return "redirect:library/books";
+        return "redirect:";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
         bookDAO.delete(id);
-        return "redirect:library/books";
+        return "redirect:";
     }
 
     @PutMapping("/{id}")
     public String setFree(@PathVariable("id")int id) {
         bookDAO.setFree(id);
         return "redirect:library/books";
+    }
+
+    @PatchMapping("/{id}/add")
+    public String setBookToPerson(@ModelAttribute("person") Person person, @PathVariable("id")int id) {
+        bookDAO.setBookToPerson(id, person.getId());
+        return "redirect:library/books/{id}";
     }
 }
