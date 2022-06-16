@@ -19,16 +19,20 @@
 
 <hr></hr>
 
-<a th:href="@{/library/people/{id}/edit(id=${person.getId()})}">Редактировать</a>
+<!--<a th:href="@{/library/people/{id}/edit(id=${person.getId()})}">Редактировать</a>-->
+
+<form th:method="GET" th:action="@{/library/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Редактировать"/>
+</form>
 
 </br>
 
 <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">
-    <input type="submit" value="Удалить"/>
+    <input style="color: darkred" type="submit" value="Удалить"/>
 </form>
 
 </br>
-<a th:href="@{/library}"><- Назад к списку читателей</a>
+<a th:href="@{/library/people}"><- Назад к списку читателей</a>
 
 </body>
 </html>

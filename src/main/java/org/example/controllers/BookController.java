@@ -34,6 +34,7 @@ public class BookController {
     public String getBook(@PathVariable("id")int id, Model model, @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.getBook(id));
         model.addAttribute("people", personDAO.getAllPeople());
+        model.addAttribute("reader", personDAO.getPerson(bookDAO.getBook(id).getPersonId()));
         return "books/book";
     }
 
