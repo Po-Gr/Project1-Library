@@ -76,18 +76,18 @@ public class BookController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
         bookDAO.delete(id);
-        return "redirect:";
+        return "redirect:.";
     }
 
     @PutMapping("/{id}")
     public String setFree(@PathVariable("id")int id) {
         bookDAO.setFree(id);
-        return "redirect:library/books";
+        return "redirect:";
     }
 
     @PatchMapping("/{id}/add")
     public String setBookToPerson(@ModelAttribute("person") Person person, @PathVariable("id")int id) {
         bookDAO.setBookToPerson(id, person.getId());
-        return "redirect:library/books/{id}";
+        return "redirect:.";
     }
 }

@@ -51,7 +51,7 @@ public class PersonController {
             return "people/new";
 
         personDAO.save(person);
-        return "redirect:library/people";
+        return "redirect:";
     }
 
     @GetMapping("/{id}/edit")
@@ -76,6 +76,6 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id")int id) {
         personDAO.delete(id);
-        return "redirect:library/people";
+        return "redirect:.";
     }
 }

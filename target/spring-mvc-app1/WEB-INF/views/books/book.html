@@ -29,11 +29,18 @@
 
 <a th:href="@{/library/books/{id}/edit(id=${book.getId()})}">Редактировать</a>
 
+<form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
+    <input type="submit" value="Редактировать"/>
+</form>
+
 </br>
 
 <form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
     <input type="submit" value="Удалить"/>
 </form>
+
+</br>
+<a th:href="@{/library}"><- Назад к списку книг</a>
 
 </body>
 </html>
