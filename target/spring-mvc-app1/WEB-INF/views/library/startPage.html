@@ -3,14 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Библиотека</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+        body {
+            /*background: url("assets/images/library.jpeg") center no-repeat;*/
+            background-color: #d0d2d5;
+
+            font-size: 22px;
+            font-weight: 200;
+
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+        }
+
+        h3 {
+            font-weight: 500;
+        }
+
+        .container {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .link {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 43px;
+
+            color: black;
+            text-decoration: none;
+
+            transition: color 0.2s linear;
+        }
+
+        .link:hover {
+            color: deeppink;
+        }
+    </style>
+
 </head>
 <body>
 
+<div class="container">
 <h3>Рады приветствовать Вас в библиотеке!</h3>
 
-<a th:href="@{/library/books}">К списку книг  **</a>
-
-<a th:href="@{/library/people}">**  К списку читателей</a>
+<a class="link" th:href="@{/library/books}">К списку книг</a>
+<a class="link" th:href="@{/library/people}">К списку читателей</a>
+</div>
 
 </body>
 </html>

@@ -3,23 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Список читателей</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+        body {
+            /*background: url("assets/images/library.jpeg") center no-repeat;*/
+            background-color: #d0d2d5;
+
+            font-size: 22px;
+            font-weight: 200;
+
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+        }
+
+        h3 {
+            font-weight: 500;
+        }
+
+        .container {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .per_link {
+            color: black;
+            text-decoration: none;
+
+            transition: color 0.2s linear;
+        }
+
+        .per_link:hover {
+            color: deeppink;
+        }
+
+        .add {
+            color: #3da400;
+            text-decoration: none;
+
+            transition: color 0.2s linear;
+        }
+
+        .add:hover {
+            color: #256001;
+        }
+
+        .back {
+            color: #7a838d;
+            text-decoration: none;
+
+            transition: color 0.2s linear;
+        }
+
+        .back:hover {
+            *color: #505964;
+        }
+
+    </style>
+
 </head>
 <body>
 
+<div class="container">
 <h3>Читатели библиотеки</h3>
 
 <div th:each="person :${people}">
-    <a th:href="@{/library/people/{id}(id=${person.getId()})}"
+    <a class="per_link" th:href="@{/library/people/{id}(id=${person.getId()})}"
        th:text="${person.getFullName() + ', ' + person.getBirthYear()}">person</a>
 </div>
 
-</br>
-</hr>
+<hr>
+<br>
 
-<a th:href="@{/library/people/new}">Добавить человека</a>
+<a class="add" th:href="@{/library/people/new}">Добавить человека</a>
 
-</br>
-<a th:href="@{/library}"><- Назад в библиотеку</a>
+<br>
+
+<a class="back" th:href="@{/library}">← Назад в библиотеку</a>
+</div>
 
 </body>
 </html>

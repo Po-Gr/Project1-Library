@@ -3,36 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Человек</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+        body {
+            /*background: url("assets/images/library.jpeg") center no-repeat;*/
+            background-color: #f5f4f3;
+
+            font-size: 22px;
+            font-weight: 200;
+
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+        }
+
+        .container {
+            width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reader {
+            font-weight: 500;
+        }
+
+        .none_book {
+            font-size: 18px;
+            color: #7a838d;
+        }
+
+        .with_book {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .books {
+            font-size: 18px;
+        }
+
+        .upd {
+            font-size: 18px;
+            font-weight: 200;
+
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+        }
+
+        .del {
+            color: #d51010;
+            font-size: 18px;
+            font-weight: 200;
+
+            font-family: 'Montserrat', 'Raleway', sans-serif;
+        }
+
+        .back {
+            color: #7a838d;
+            text-decoration: none;
+
+            transition: color 0.2s linear;
+        }
+
+        .back:hover {
+            *color: #505964;
+        }
+
+    </style>
+
 </head>
 <body>
 
-<p th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
+<div class="container">
+<p class="reader" th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
 
+<p class="none_book" th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</p>
+<hr th:unless="${books.isEmpty()}">
 
-<p th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</p>
-<hr th:unless="${books.isEmpty()}"></hr>
-<a style="font-style: oblique" th:unless="${books.isEmpty()}">Книги:</a>
-<p th:each="book :${books}">
+<a class="with_book" th:unless="${books.isEmpty()}">Книги:</a>
+<a class="books" th:each="book :${books}">
     <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"
        th:unless="${books.isEmpty()}">Есть книги</a>
-</p>
+</a>
 
-<hr></hr>
-
-<!--<a th:href="@{/library/people/{id}/edit(id=${person.getId()})}">Редактировать</a>-->
+<hr>
 
 <form th:method="GET" th:action="@{/library/people/{id}/edit(id=${person.getId()})}">
-    <input type="submit" value="Редактировать"/>
+    <input class="upd" type="submit" value="Редактировать"/>
 </form>
 
 </br>
 
 <form th:method="DELETE" th:action="@{/library/people/{id}(id=${person.getId()})}">
-    <input style="color: darkred" type="submit" value="Удалить"/>
+    <input class="del" type="submit" value="Удалить"/>
 </form>
 
 </br>
-<a th:href="@{/library/people}"><- Назад к списку читателей</a>
+
+<a class="back" th:href="@{/library/people}">← Назад к списку читателей</a>
+</div>
 
 </body>
 </html>
