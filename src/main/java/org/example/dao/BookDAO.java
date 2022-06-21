@@ -1,9 +1,7 @@
 package org.example.dao;
 
 import org.example.models.Book;
-import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +17,7 @@ public class BookDAO {
     }
 
     public List<Book> getAllBooks() {
-        return jdbcTemplate.query("SELECT * FROM book", new BookMapper());
+        return jdbcTemplate.query("SELECT * FROM book ORDER BY title", new BookMapper());
     }
 
     public Book getBook(int id) {
@@ -48,10 +46,4 @@ public class BookDAO {
     public void setBookToPerson(int id, int personId) {
         jdbcTemplate.update("UPDATE book SET person_id=? WHERE book_id=?", personId, id);
     }
-
-
-//    public List<Person> getAllPeople() {
-//        return jdbcTemplate.query("SELECT * FROM person", new PersonMapper());
-//    }
-
 }

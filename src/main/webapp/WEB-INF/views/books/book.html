@@ -3,139 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Книга</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
-        body {
-            /*background: url("assets/images/library.jpeg") center no-repeat;*/
-            background-color: #f5f4f3;
-
-            font-size: 22px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .container {
-            width: 900px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .book {
-            font-weight: 500;
-        }
-
-        .text {
-            font-size: 18px;
-        }
-
-        .reader {
-            font-size: 18px;
-            font-weight: 400;
-        }
-
-        .free {
-            color: #3da400;
-            font-size: 18px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .text2 {
-            color: #7a838d;
-            font-size: 18px;
-        }
-
-        .choose {
-            font-size: 18px;
-        }
-
-        .apply {
-            color: #3da400;
-            font-size: 18px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .reader2 {
-            font-size: 18px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .upd {
-            font-size: 18px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .del {
-            color: #d51010;
-            font-size: 18px;
-            font-weight: 200;
-
-            font-family: 'Montserrat', 'Raleway', sans-serif;
-        }
-
-        .back {
-            color: #7a838d;
-            text-decoration: none;
-
-            transition: color 0.2s linear;
-        }
-
-        .back:hover {
-            *color: #505964;
-        }
-
-    </style>
-
+    <link th:href="@{/static/css/book.css}" rel="stylesheet" />
 </head>
 <body>
 
 <div class="container">
-<p class="book" th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">VALUE</p>
+    <a class="link" th:href="@{/library/books}">К списку книг</a>
+    <a class="link" th:href="@{/library/people}">К списку читателей</a>
 
-<a class="text" th:if="${book.getPersonId()}"
-   th:text="${'Книга сейчас у: '}">value</a>
+    <h3 th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">VALUE</h3>
 
-<a class="reader" th:if="${book.getPersonId()}"
-   th:text="${reader.getFullName()}">value</a>
+    <a class="text" th:if="${book.getPersonId()}"
+       th:text="${'Книга сейчас у: '}">value</a>
 
-<form th:method="PUT" th:action="@{/library/books/{id}(id=${book.getId()})}">
-    <input class="free" type="submit" value="Освободить книгу"
-           th:if="${book.getPersonId()}"/>
-</form>
+    <a class="reader" th:if="${book.getPersonId()}"
+       th:text="${reader.getFullName()}">value</a>
 
-<p class="text2" th:unless="${book.getPersonId()}">Эта книга сейчас свободна. Кому ее назначить?</p>
-<form th:unless="${book.getPersonId()}"
-      th:method="PATCH" th:action="@{/library/books/{id}/add(id=${book.getId()})}">
-    <label class="choose" for="person">Выберете человека: </label>
-    <select class="reader2" th:object="${person}" th:field="*{id}" id="person">
-        <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
-    </select>
+    <form th:method="PUT" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="free" type="submit" value="Освободить книгу"
+               th:if="${book.getPersonId()}"/>
+    </form>
 
-    <input class="apply" type="submit" value="Назначить книгу"/>
-</form>
+    <p class="text2" th:unless="${book.getPersonId()}">Эта книга сейчас свободна. Кому ее назначить?</p>
+    <form th:unless="${book.getPersonId()}"
+          th:method="PATCH" th:action="@{/library/books/{id}/add(id=${book.getId()})}">
+        <label class="choose" for="person">Выберете человека: </label>
+        <select class="reader2" th:object="${person}" th:field="*{id}" id="person">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+        </select>
 
-<hr>
+        <input class="apply" type="submit" value="Назначить книгу"/>
+    </form>
 
-<form th:method="GET" th:action="@{/library/books/{id}/edit(id=${book.getId()})}">
-    <input class="upd" type="submit" value="Редактировать"/>
-</form>
+    <hr>
 
-</br>
+    <form th:method="GET" th:action="@{/library/books/{id}/edit(id=${book.getId()})}">
+        <input class="upd" type="submit" value="Редактировать"/>
+    </form>
 
-<form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
-    <input class="del" type="submit" value="Удалить"/>
-</form>
+    </br>
 
-</br>
-<a class="back" th:href="@{/library/books}">← Назад к списку книг</a>
+    <form th:method="DELETE" th:action="@{/library/books/{id}(id=${book.getId()})}">
+        <input class="del" type="submit" value="Удалить"/>
+    </form>
 </div>
 
 </body>
