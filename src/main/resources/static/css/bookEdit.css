@@ -5,24 +5,23 @@ body {
 
     color: #fcf4f4;
     font-size: 22px;
-    font-weight: 200;
+    font-weight: 100;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
 .container {
-    width: 900px;
-    max-width: 1200px;
-    margin: 80px auto;
+    width: 1251px;
+    max-width: 1300px;
+    margin: 91px auto;
 }
 
 .label {
-    font-weight: 400;
 }
 
 .input {
     font-size: 22px;
-    font-weight: 200;
+    font-weight: 100;
     background: #b5babd;
     color: #111111;
     border-radius: 15px 15px 15px 15px;
@@ -32,8 +31,9 @@ body {
 
 .upd {
     font-size: 22px;
-    font-weight: 200;
-    background: #757676;
+    font-weight: 100;
+    /*background: #757676;*/
+    background: transparent;
     color: #00ffb9;
     border-radius: 15px 15px 15px 15px;
 

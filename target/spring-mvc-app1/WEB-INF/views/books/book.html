@@ -8,10 +8,14 @@
 <body>
 
 <div class="container">
-    <a class="link" th:href="@{/library/books}">К списку книг</a>
-    <a class="link" th:href="@{/library/people}">К списку читателей</a>
+    <div class="link_box">
+        <a class="link" th:href="@{/library/books}">К списку книг</a>
+        <a class="link" th:href="@{/library/people}">К списку читателей</a>
+        <a class="link" th:href="@{/library}">В библиотеку</a>
+    </div>
 
-    <h3 th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">VALUE</h3>
+    <h3 th:text="${book.getTitle() + ', '}">VALUE</h3>
+    <h2 th:text="${book.getAuthor() + ', ' + book.getYear()}">VALUE</h2>
 
     <a class="text" th:if="${book.getPersonId()}"
        th:text="${'Книга сейчас у: '}">value</a>

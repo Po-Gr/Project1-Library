@@ -4,29 +4,29 @@ body {
     background-size: cover;
     /*background-color: #d0d2d5;*/
 
-    font-size: 30px;
-    font-weight: 200;
+    font-size: 34px;
+    font-weight: 100;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
 h3 {
-    font-size: 42px;
-    font-weight: 200;
-    margin: 200px auto 40px auto;
+    font-size: 60px;
+    font-weight: 100;
+    margin: 200px auto 0 auto;
     color: #fcf4f4;
+    line-height: 0.5;
 }
 
 .container {
-    width: 900px;
-    max-width: 1200px;
+    width: 1220px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 .link {
     display: inline-block;
     vertical-align: top;
-    margin: 0 200px 0 0;
 
     color: #fcf4f4;
     text-decoration: none;
@@ -36,4 +36,10 @@ h3 {
 
 .link:hover {
     color: deeppink;
+}
+
+.link_box {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px auto;
 }

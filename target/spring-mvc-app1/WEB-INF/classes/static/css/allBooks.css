@@ -4,19 +4,21 @@ body {
     background-size: cover;
 
     font-size: 22px;
-    font-weight: 200;
+    font-weight: 100;
     color: #fcf4f4;
 
     font-family: 'Montserrat', 'Raleway', sans-serif;
 }
 
 h3 {
-    font-weight: 500;
+    font-weight: 100;
+    font-size: 60px;
+    margin: auto auto 20px auto;
 }
 
 .container {
-    width: 900px;
-    max-width: 1200px;
+    width: 1251px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -24,7 +26,7 @@ h3 {
     display: inline-block;
     vertical-align: top;
     horiz-align: right;
-    margin: 0 50px 40px 0;
+    margin: 0 0 40px 0;
 
     color: deeppink;
     text-decoration: none;
@@ -35,6 +37,11 @@ h3 {
 
 .link:hover {
     color: #000;
+}
+
+.link_box {
+    display: flex;
+    justify-content: space-between;
 }
 
 .book_link {
@@ -52,6 +59,8 @@ h3 {
     color: #00ffb9;
     text-decoration: none;
     margin: auto auto 100px auto;
+    font-size: 34px;
+    font-weight: 100;
 
     transition: color 0.2s linear;
 }
